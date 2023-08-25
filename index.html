@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Math Help Website</title>
     <style>
-        /* Your CSS styles go here */
         /* Reset default styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0; /* Choose your background color */
-            color: #333; /* Choose your text color */
+            background-color: #f0f0f0; /* Light gray background */
+            color: #333; /* Dark gray text */
         }
 
         .container {
@@ -23,7 +22,7 @@
 
         /* Heading styles */
         h1, h2, h3 {
-            color: #0077b6; /* Choose your heading color */
+            color: #0077b6; /* Blue headings */
         }
 
         /* Text styles */
@@ -34,7 +33,7 @@
 
         /* Buttons */
         .button {
-            background-color: #fca311; /* Choose your button color */
+            background-color: #fca311; /* Orange button */
             color: white;
             padding: 10px 20px;
             border: none;
@@ -44,22 +43,22 @@
         }
 
         .button:hover {
-            background-color: #e85d04; /* Choose a slightly different color for hover effect */
+            background-color: #e85d04; /* Slightly darker orange on hover */
         }
 
         /* Make links easy to distinguish */
         a {
-            color: #e63946; /* Choose your link color */
+            color: #e63946; /* Red links */
             text-decoration: underline;
         }
 
         a:hover {
-            color: #d62828; /* Choose a slightly different color for hover effect */
+            color: #d62828; /* Slightly darker red on hover */
         }
 
         /* Create a clean and simple navigation menu */
         .navbar {
-            background-color: #333; /* Choose your navbar color */
+            background-color: #333; /* Dark gray navbar */
             padding: 10px 0;
         }
 
@@ -70,7 +69,7 @@
 
         /* Style the footer */
         .footer {
-            background-color: #222; /* Choose your footer color */
+            background-color: #222; /* Very dark gray footer */
             color: white;
             padding: 20px 0;
             text-align: center;
@@ -89,8 +88,14 @@
 
         /* High contrast for text and background */
         body, p, .navbar, .footer {
-            background-color: #f0f0f0; /* Background color for better contrast */
-            color: #333; /* Text color for better contrast */
+            background-color: #f0f0f0; /* Light gray background for better contrast */
+            color: #333; /* Dark gray text for better contrast */
+        }
+
+        /* Math problem styles */
+        .math-problem {
+            margin: 20px 0;
+            font-size: 20px;
         }
 
         /* You can further customize these styles to meet your specific preferences and accessibility requirements. */
@@ -102,7 +107,7 @@
         <h1>Welcome to Your Math Help Website</h1>
         <p>This website is dedicated to making math easy to understand and learn for everyone, including those with medical conditions or reading difficulties.</p>
         <p>Explore our resources, tutorials, and math community to enhance your math skills.</p>
-        <a class="button" href="#">Get Started</a>
+        <a class="button" href="#" onclick="startMathProblems()">Get Started</a>
     </div>
     
     <div class="navbar">
@@ -125,5 +130,59 @@
             <p>&copy; 2023 Your Math Help Website</p>
         </div>
     </div>
+
+    <script>
+        // JavaScript for math problems
+        let currentProblem = 1;
+
+        function startMathProblems() {
+            // Clear any existing content
+            document.body.innerHTML = '';
+
+            // Create a container for math problems
+            const mathContainer = document.createElement('div');
+            mathContainer.classList.add('container');
+            document.body.appendChild(mathContainer);
+
+            // Generate and display math problems
+            generateMathProblems(mathContainer, currentProblem, 30);
+        }
+
+        function generateMathProblems(container, start, end) {
+            for (let i = start; i <= end; i++) {
+                const problem = document.createElement('div');
+                problem.classList.add('math-problem');
+                problem.innerText = `Problem ${i}: ${generateRandomMathProblem()}`;
+                container.appendChild(problem);
+            }
+        }
+
+        function generateRandomMathProblem() {
+            // Generate a random math problem (you can customize this function)
+            const operand1 = Math.floor(Math.random() * 10);
+            const operand2 = Math.floor(Math.random() * 10);
+            const operator = ['+', '-', 'x'][Math.floor(Math.random() * 3)];
+            const result = calculateResult(operand1, operand2, operator);
+            return `${operand1} ${operator} ${operand2} = ${result}`;
+        }
+
+        function calculateResult(operand1, operand2, operator) {
+            // Calculate the result of the math problem
+            switch (operator) {
+                case '+':
+                    return operand1 + operand2;
+                case '-':
+                    return operand1 - operand2;
+                case 'x':
+                    return operand1 * operand2;
+                // You can add more operators as needed
+                default:
+                    return 'N/A';
+            }
+        }
+
+        // Start with the "Get Started" button
+        startMathProblems();
+    </script>
 </body>
 </html>
